@@ -38,7 +38,7 @@
 
 ## 📍 Overview
 
-<code>❯ REPLACE-ME</code>
+<code>❯ MahiruCoin</code>
 
 ---
 
