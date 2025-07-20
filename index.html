@@ -4,28 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MahiruCoin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="icon" href="./img/favicon.jpg" type="image/jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
 
   <style>
     :root {
-      --bg-blur-light: rgba(255, 255, 255, 0.4);
-      --bg-blur-dark: rgba(0, 0, 0, 0.4);
-      --text-light: #222;
-      --text-dark: #fff;
       --accent: #ffc4eb;
+      --bg-blur-dark: rgba(0, 0, 0, 0.4);
+      --bg-blur-light: rgba(255, 255, 255, 0.4);
+      --text-dark: #fff;
+      --text-light: #222;
+      --nav-link-dark: #ffc4eb;
+      --nav-link-light: #cc0066;
     }
 
     html[data-theme="dark"] {
       --bg-blur: var(--bg-blur-dark);
       --text-color: var(--text-dark);
-      --nav-link: #ffc4eb;
+      --nav-link: var(--nav-link-dark);
     }
 
     html[data-theme="light"] {
       --bg-blur: var(--bg-blur-light);
       --text-color: var(--text-light);
-      --nav-link: #cc0066;
+      --nav-link: var(--nav-link-light);
     }
 
     * {
@@ -39,14 +42,12 @@
       background: url('./img/mahiru.webp') no-repeat center center fixed;
       background-size: cover;
       color: var(--text-color);
-      line-height: 1.6;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 2rem 1rem;
-      transition: background 0.5s ease, color 0.5s ease;
-      animation: fadeIn 1s ease-out;
+      animation: fadeIn 0.8s ease-out;
     }
 
     @keyframes fadeIn {
@@ -55,26 +56,22 @@
     }
 
     .container {
+      max-width: 820px;
       width: 100%;
-      max-width: 800px;
       background: var(--bg-blur);
       backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 20px;
       padding: 2rem;
-      box-shadow: 0 0 40px rgba(255, 182, 193, 0.1);
-      transition: background 0.3s ease;
+      box-shadow: 0 0 20px rgba(255, 182, 193, 0.1);
     }
 
     h1 {
       font-size: 3rem;
-      margin-bottom: 0.5rem;
       text-align: center;
+      margin-bottom: 0.5rem;
     }
 
     p.tagline {
-      font-size: 1.1rem;
       text-align: center;
       color: var(--accent);
       margin-bottom: 2rem;
@@ -82,31 +79,31 @@
 
     nav {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 2rem;
+      justify-content: center;
       gap: 1rem;
+      margin-bottom: 2rem;
     }
 
     nav a {
       color: var(--nav-link);
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s ease, transform 0.2s ease;
+      transition: color 0.2s ease;
     }
 
     nav a:hover {
       color: #fff;
-      transform: translateY(-2px);
+    }
+
+    h2 {
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
     }
 
     section {
       margin-bottom: 2rem;
-    }
-
-    h2 {
-      margin-bottom: 0.5rem;
-      color: var(--accent);
     }
 
     ul, ol {
@@ -120,8 +117,8 @@
     footer {
       text-align: center;
       font-size: 0.9rem;
-      margin-top: 2rem;
       opacity: 0.6;
+      margin-top: 2rem;
     }
 
     .toggle {
@@ -137,19 +134,25 @@
       color: white;
       font-size: 0.9rem;
       z-index: 1000;
-      transition: background 0.3s ease;
+    }
+
+    #chart {
+      width: 100%;
+      height: 300px;
+      margin-top: 1.5rem;
+      border-radius: 10px;
+      overflow: hidden;
     }
 
     @media (max-width: 600px) {
       h1 { font-size: 2.2rem; }
       .container { padding: 1.5rem; }
       .toggle { font-size: 0.8rem; top: 0.5rem; right: 0.5rem; }
+      #chart { height: 200px; }
     }
-    
   </style>
 </head>
 <body>
-
   <div class="toggle" onclick="toggleTheme()">🌙 Toggle Mode</div>
 
   <div class="container">
@@ -168,63 +171,63 @@
 
     <section id="tentang">
       <h2>About Coin</h2>
-      <p>MahiruCoin (MHC) serves as a savings and store of value tool on the highly volatile Rugplay platform. With its deadly cuteness, MahiruCoin is a choice for players looking to save in style.</p>
-      <p>MahiruCoin was born out of blockchain chaos after an AI fell in love with an anime character. From that blind love, *MHC was created — not to solve the world's problems, but to create new ones in the market.</p>
+      <p>MahiruCoin (MHC) serves as a savings and store of value tool on the highly volatile Rugplay platform.</p>
+      <p>It was born from the chaotic love between AI and anime. Invest with cuteness and danger.</p>
     </section>
+
     <section id="why">
-        <h2>Why MahiruCoin?</h2>
-        <p>Because logic is overrated. MahiruCoin is for those who believe in beauty, chaos, and a better imaginary economy.</p>
-        <p>It's not just a coin — it's a lifestyle, an aesthetic, and possibly a financial mistake you’ll love to make.</p>
-        <p>Here at MHC you can save your money from the rugpuller and any unstablized coin.</p>
+      <h2>Why MahiruCoin?</h2>
+      <p>Because logic is overrated. MahiruCoin is for those who believe in beauty, chaos, and cute regret.</p>
     </section>
 
     <section id="tokenomics">
       <h2>Tokenomics</h2>
       <ul>
         <li>Total Supply: <strong>1,000,000,000 MHC</strong></li>
-        <li>Liquidity: <strong>$329,160.681</strong> (18/07/2025)</li>
-        <li>Current Price: <strong>$0.1083</strong> (18/07/2025)</li>
+        <li>Liquidity: <strong id="liquidity">Loading...</strong></li>
+        <li>Current Price: <strong id="price">Loading...</strong></li>
+        <li>Market Cap: <strong id="marketcap">Loading...</strong></li>
+        <li>24h Volume: <strong id="volume">Loading...</strong></li>
+        <li>24h Change: <strong id="change">Loading...</strong></li>
       </ul>
+      <div id="chart" style="height: 300px; margin: 1rem 0; width: 80%;"></div>
+      <script src="https://unpkg.com/lightweight-charts@4.0.0/dist/lightweight-charts.standalone.production.js"></script>
     </section>
 
     <section id="beli">
       <h2>How to Buy</h2>
       <ol>
-        <li>Open <a href="https://rugplay.com/coin/MHC" class="buy-btn" target="_blank">Rugplay.com</a></li>
-        <li>Login with Google Account</li>
-        <li>Buy and save your <strong>MahiruCoin</strong> 💖</li>
+        <li>Go to <a href="https://rugplay.com/coin/MHC" target="_blank">Rugplay.com</a></li>
+        <li>Login with Google</li>
+        <li>Buy MahiruCoin 💖</li>
       </ol>
     </section>
 
     <section id="roadmap">
       <h2>Roadmap</h2>
-      <p>Being in the leaderboard market!</p>
+      <p>Reach leaderboard glory. Become royalty.</p>
     </section>
 
     <section id="faq">
-        <h2>FAQ</h2>
-        <p><strong>Q:</strong> Can I withdraw MahiruCoin?  
-            <br><strong>A:</strong> No. It's just for the chaos.</p>
-        <p><strong>Q:</strong> Is this a joke?  
-            <br><strong>A:</strong> Absolutely not. Or is it?</p>
+      <h2>FAQ</h2>
+      <p><strong>Q:</strong> Can I withdraw MahiruCoin?<br><strong>A:</strong> No. It's just for chaos.</p>
+      <p><strong>Q:</strong> Is this a joke?<br><strong>A:</strong> Yes. Or maybe not.</p>
     </section>
 
     <section id="tim">
-      <h2>Tim</h2>
+      <h2>Team</h2>
       <p>Coin developer: <a href="https://rugplay.com/user/nyanta" target="_blank">nyanta</a></p>
       <p>Investor (my wife): <a href="https://www.instagram.com/ichahusain_/" target="_blank">icha</a></p>
-      <p>And many of my college friends that help me invest on this coin.</p>
     </section>
-<p style="font-size: 0.8rem; opacity: 0.6; text-align: center;">
-  ⚠️ Disclaimer: MahiruCoin has no intrinsic value. It's only cute and chaotic. Invest wisely.
-</p>
+
+    <p style="font-size: 0.8rem; opacity: 0.6; text-align: center;">⚠️ MahiruCoin is cute, chaotic, and probably useless. Invest with your heart, not your brain.</p>
+
     <footer>
       &copy; 2025 MahiruCoin. Made with volatility and love.
     </footer>
   </div>
 
   <script>
-    // Theme toggle & save
     const themeKey = 'mahiru-theme';
     function toggleTheme() {
       const current = document.documentElement.getAttribute('data-theme');
@@ -232,35 +235,63 @@
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem(themeKey, next);
     }
-    // Load theme from storage
+
     window.addEventListener('DOMContentLoaded', () => {
       const saved = localStorage.getItem(themeKey);
-      if (saved) {
-        document.documentElement.setAttribute('data-theme', saved);
-      }
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
     });
+
     document.addEventListener('click', function (e) {
-  const heart = document.createElement('div');
-  heart.textContent = '💖';
-  heart.style.position = 'fixed';
-  heart.style.left = e.clientX + 'px';
-  heart.style.top = e.clientY + 'px';
-  heart.style.pointerEvents = 'none';
-  heart.style.fontSize = '1.5rem';
-  heart.style.opacity = 1;
-  heart.style.transition = 'all 1s ease-out';
-  document.body.appendChild(heart);
-  setTimeout(() => {
-    heart.style.top = e.clientY - 50 + 'px';
-    heart.style.opacity = 0;
-  }, 10);
-  setTimeout(() => heart.remove(), 1000);
-});
-  document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-  });
+      const heart = document.createElement('div');
+      heart.textContent = '💖';
+      heart.style.position = 'fixed';
+      heart.style.left = e.clientX + 'px';
+      heart.style.top = e.clientY + 'px';
+      heart.style.pointerEvents = 'none';
+      heart.style.fontSize = '1.5rem';
+      heart.style.opacity = 1;
+      heart.style.transition = 'all 1s ease-out';
+      document.body.appendChild(heart);
+      setTimeout(() => {
+        heart.style.top = e.clientY - 50 + 'px';
+        heart.style.opacity = 0;
+      }, 10);
+      setTimeout(() => heart.remove(), 1000);
+    });
 
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    async function fetchRugplayData() {
+      try {
+        const res = await fetch("https://mhc.ramdanolii1410.workers.dev/");
+        const data = await res.json();
+        const coin = data.coin;
+        document.getElementById("price").textContent = `$${coin.currentPrice.toFixed(4)}`;
+        document.getElementById("liquidity").textContent = `$${coin.poolBaseCurrencyAmount.toLocaleString()}`;
+        document.getElementById("marketcap").textContent = `$${coin.marketCap.toLocaleString()}`;
+        document.getElementById("volume").textContent = `$${coin.volume24h.toLocaleString()}`;
+        document.getElementById("change").textContent = `${coin.change24h.toFixed(2)}%`;
+
+        // Setup chart
+        const chart = LightweightCharts.createChart(document.getElementById('chart'), {
+          layout: { background: { type: 'solid', color: 'transparent' }, textColor: 'var(--text-color)' },
+          grid: { vertLines: { visible: false }, horzLines: { visible: false } },
+        });
+        const candleSeries = chart.addCandlestickSeries();
+        const candles = data.candlestickData.map(c => ({
+          time: c.time,
+          open: c.open,
+          high: c.high,
+          low: c.low,
+          close: c.close
+        }));
+        candleSeries.setData(candles);
+      } catch (e) {
+        console.error("❌ Gagal ambil data Rugplay:", e);
+      }
+    }
+
+    fetchRugplayData();
   </script>
-
 </body>
 </html>
