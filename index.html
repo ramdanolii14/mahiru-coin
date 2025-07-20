@@ -288,10 +288,7 @@
               document.getElementById("liquidity").textContent = `$${coin.poolBaseCurrencyAmount.toLocaleString()}`;
               document.getElementById("marketcap").textContent = `$${coin.marketCap.toLocaleString()}`;
               document.getElementById("volume").textContent = `$${coin.volume24h.toLocaleString()}`;
-              
-              // Hitung % perubahan harga dari 24h lalu (jika available)
-              const changePercent = (coin.change24h / (coin.currentPrice - coin.change24h)) * 100;
-              document.getElementById("change").textContent = `${changePercent.toFixed(2)}%`;
+              document.getElementById("change").textContent = `${coin.change24h.toLocaleString()}%`;
 
               // Setup Chart
               const chartEl = document.getElementById('chart');
